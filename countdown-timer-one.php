@@ -139,15 +139,32 @@
  		    <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
  		</p>
     <p>
-      <script type="text/javascript">
-      var aBDatePicker = jQuery('.aBDatepicker');
-
-      aBDatePicker.datepicker({
-          dateFormat: jQuery(self).attr('data-dateformat')
-      });
-      </script>
         <label for="<?php echo esc_attr( $this->get_field_id( 'cto_toDate' ) ); ?>"><?php esc_attr_e( 'To date:', 'text_domain' ); ?></label>
  		    <input class="widefat aBDatepicker" id="<?php echo esc_attr( $this->get_field_id( 'cto_toDate' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'cto_toDate' ) ); ?>" type="text" value="<?php echo esc_attr( $cto_toDate ); ?>">
+        <script type="text/javascript">
+        jQuery(document).ready(function($) {
+          var aBDatePicker = $('.aBDatepicker');
+
+          if (aBDatePicker[0]) {
+              //check if datepicker exists as a function
+              if (typeof aBDatePicker.datepicker == 'function') {
+                aBDatePicker.datepicker({
+                    dateFormat: $(self).attr('data-dateformat')
+                });
+
+              }
+          }
+
+          //Timepicker
+          var aBTimepicker = $('.aBTimepicker');
+
+          if (aBTimepicker[0]) {
+              if (typeof aBTimepicker.timepicker == 'function') {
+                  aBTimepicker.timepicker();
+              }
+          }
+        });
+        </script>
  		</p>
     <p>
         <label for="<?php echo esc_attr( $this->get_field_id( 'cto_toTime' ) ); ?>"><?php esc_attr_e( 'To time:', 'text_domain' ); ?></label>

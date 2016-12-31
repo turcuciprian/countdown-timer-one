@@ -20,9 +20,9 @@ jQuery(document).ready(function($) {
     if (aBDatePicker[0]) {
         //check if datepicker exists as a function
         if (typeof aBDatePicker.datepicker == 'function') {
-          aBDatePicker.datepicker({
-              dateFormat: $(self).attr('data-dateformat')
-          });
+            aBDatePicker.datepicker({
+                dateFormat: $(self).attr('data-dateformat')
+            });
         }
     }
     if (aBTimepicker[0]) {
