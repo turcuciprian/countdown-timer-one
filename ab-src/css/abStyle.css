@@ -1,0 +1,137 @@
+body.wp-admin {
+    display: inline-table;
+    min-width: 100%
+}
+
+.aBMB {
+    display: inline-block;
+    width: 100%
+}
+
+.aBMB .description {
+    display: block;
+    margin: 10px 0
+}
+
+.aBMB .row {
+    padding: 10px
+}
+
+.aBMB .row:nth-child(2n) {
+    background: #e4e4e4
+}
+
+form.aBForm textarea {
+    width: 50%;
+    display: inline-block;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    outline: 0;
+    border: 1px solid #DDD;
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    padding: 3px 0 3px 3px;
+    margin: 5px 1px 3px 0;
+    border: 1px solid rgba(81, 203, 238, 1)
+}
+
+form.abForm label.description {
+    padding: 10px 0;
+    font-weight: 200;
+    display: block
+}
+
+form.abForm p.pageDescription {
+    margin-bottom: 30px
+}
+
+.aBMB img.uploadImage,
+form.abForm img.uploadImage {
+    min-width: 0;
+    min-height: 0;
+    max-width: 100px;
+    max-height: 100px;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    border: 1px solid #6b6b6b;
+    background-color: #e7e7e7
+}
+
+.groupContainer,
+.white-popup {
+    position: relative;
+    padding: 20px
+}
+
+.white-popup {
+    background: #FFF;
+    width: auto;
+    max-width: 500px;
+    margin: 20px auto
+}
+
+.ab,
+.ab .nav-tabs {
+    display: inline-block;
+    width: 100%
+}
+
+.groupContainer {
+    margin: 20px 0;
+    background: #e4e4e4;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px
+}
+
+.ab button.close,
+.ab button.close:hover {
+    opacity: 1;
+    color: #FFF;
+    border: 2px solid #b47878;
+    padding: 5px
+}
+
+.ab button.close {
+    font-family: Arial;
+    position: absolute;
+    right: -30px;
+    top: 3px;
+    float: right;
+    margin: 2px;
+    font-size: 14px;
+    background: #f03d3d
+}
+
+.ab button.close:hover {
+    cursor: pointer;
+    background: #000
+}
+
+.abPageRow {
+    padding: 5px;
+    border: 1px solid #e0e0e0;
+    margin: 5px 0
+}
+
+.ab {
+    overflow: hidden
+}
+
+.aBMB .row.abList,
+.ab .container-fluid .row.abList {
+    display: inline-block;
+    width: 100%;
+    padding: 10px 14px 10px 10px;
+    margin: 0 -8px 0 -12px
+}
+
+.ab .container-fluid .row.abList:nth-child(2n) {
+    background: #e8e8e8
+}
+
+.ab .container-fluid .row.abList:nth-child(2n+1) {
+    background: #fff
+}
