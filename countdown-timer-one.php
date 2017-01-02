@@ -1,31 +1,27 @@
 <?php
 /*
   Plugin Name: Countdown Timer One
-  Plugin URI: http://ciprianturcu.com
-  Description: create a countdown timer widget that's configurable and dynamic so that you can make many countdown timer widgets
-  Version: 1.0.0
+  Plugin URI: http://ciprianturcu.com/countdown-timer-one/
+  Description: create a countdown timer widget that's configurable and dynamic so that you can make a countdown timer widget
+  Version: 1.0
   Author: ciprianturcu
-  Author URI: http://admin-builder.com
+  Author URI: http://ciprianturcu.com
   License: GPLv2 or later
   Text Domain: countdown-timer-one
  */
 
- if(!function_exists('abEnqueueAll')){
+ if(!function_exists('ctoEnqueueAll')){
    //Admin scripts and styles
-   add_action('admin_enqueue_scripts', 'abEnqueueAll');
+   add_action('admin_enqueue_scripts', 'ctoEnqueueAll');
    //Admin scripts and styles callback
-   function abEnqueueAll()
+   function ctoEnqueueAll()
    {
      //*
      // CSS
      //*
-     abExists('bootstrapFontIcons', 'ab-src/css/bootstrap.min.css', 'style',array(),'plugin');
-     abExists('jQueryUiCore', 'ab-src/css/jquery-ui.css', 'style',array(),'plugin');
-     abExists('abIris', 'ab-src/css/iris.min.css', 'style',array(),'plugin');
-     abExists('abMagnificPopup', 'ab-src/css/magnific-popup.css', 'style',array(),'plugin');
-     abExists('abTimepicker', 'ab-src/css/jquery.timepicker.css', 'style',array(),'plugin');
-     //--
-     abExists('customAbStyle', 'ab-src/css/abStyle.css', 'style',array(),'plugin');
+     ctoExists('jQueryUiCore', 'ab-src/css/jquery-ui.css', 'style',array(),'plugin');
+     ctoExists('ctoTimepicker', 'ab-src/css/jquery.timepicker.css', 'style',array(),'plugin');
+     ctoExists('customctoStyle', 'ab-src/css/abStyle.css', 'style',array(),'plugin');
 
        //*
        //  Custom JS
@@ -40,21 +36,16 @@
        //*
        //  Custom JS
        //*
-       abExists('abColor', 'ab-src/js/color.js', 'script',array(),'plugin');
-       abExists('abIris', 'ab-src/js/iris.js', 'script',array('jquery-ui-core', 'jquery-ui-draggable', 'jquery-ui-slider'),'plugin');
-       abExists('abTimepicker', 'ab-src/js/jquery.timepicker.min.js', 'script',array('jquery-ui-core'),'plugin');
-       abExists('abBootstrapJs', 'ab-src/js/bootstrap.min.js', 'script',array('jquery', 'jquery-ui-core'),'plugin');
-       abExists('abMagnificPopup', 'ab-src/js/jquery.magnific-popup.min.js', 'script',array('jquery', 'jquery-ui-core'),'plugin');
-       //--
-       abExists('abCustomScript', 'ab-src/js/abScript.js', 'script',array(),'plugin');
+       ctoExists('ctoTimepicker', 'ab-src/js/jquery.timepicker.min.js', 'script',array('jquery-ui-core'),'plugin');
+       ctoExists('ctoCustomScript', 'ab-src/js/abScript.js', 'script',array(),'plugin');
      }
    }
 
 
 
 
-   if(!function_exists('abExists')){
-     function abExists($name, $path, $type,$dependencies = array(),$exportType)
+   if(!function_exists('ctoExists')){
+     function ctoExists($name, $path, $type,$dependencies = array(),$exportType)
      {
        $fileExists = false;
 
@@ -117,7 +108,47 @@
  		if ( ! empty( $instance['title'] ) ) {
  			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
  		}
- 		echo esc_html__( 'Hello, World!', 'text_domain' );
+
+    ?>
+
+    <div id="ctoWidget">
+    </div>
+    <script type="text/javascript">
+    function getTimeRemaining(endtime){
+      var t = Date.parse(endtime) - Date.parse(new Date());
+      var seconds = Math.floor( (t/1000) % 60 );
+      var minutes = Math.floor( (t/1000/60) % 60 );
+      var hours = Math.floor( (t/(1000*60*60)) % 24 );
+      var days = Math.floor( t/(1000*60*60*24) );
+      return {
+        'total': t,
+        'days': days,
+        'hours': hours,
+        'minutes': minutes,
+        'seconds': seconds
+      };
+    }
+    function initializeClock(id, endtime){
+  var clock = document.getElementById(id);
+  var timeinterval = setInterval(function(){
+    var t = getTimeRemaining(endtime);
+    clock.innerHTML = 'days: ' + t.days + '<br>' +
+                      'hours: '+ t.hours + '<br>' +
+                      'minutes: ' + t.minutes + '<br>' +
+                      'seconds: ' + t.seconds;
+    if(t.total<=0){
+      clearInterval(timeinterval);
+    }
+  },1000);
+}
+var hrs = -(new Date().getTimezoneOffset() / 60)
+var ctoDeadline = '<?php echo $instance['cto_toDate'];?> <?php echo $instance['cto_toTime'];?> GMT'+hrs;
+initializeClock('ctoWidget', ctoDeadline);
+var d = new Date()
+var n = d.getTimezoneOffset();
+console.log(n/60);
+    </script>
+    <?php
  		echo $args['after_widget'];
  	}
 
@@ -131,43 +162,44 @@
  	public function form( $instance ) {
 
     $title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'New title', 'text_domain' );
-    $cto_toDate = ! empty( $instance['cto_toDate'] ) ? $instance['cto_toDate'] : esc_html__( '', 'text_domain' );
- 		$cto_toTime = ! empty( $instance['cto_toTime'] ) ? $instance['cto_toTime'] : esc_html__( '', 'text_domain' );
+    $cto_toDate = (! empty( $instance['cto_toDate'] ) && isset($instance['cto_toDate'])) ? $instance['cto_toDate'] : esc_html__( '', 'text_domain' );
+ 		$cto_toTime = (! empty( $instance['cto_toTime'] ) && isset($instance['cto_toTime'])) ? $instance['cto_toTime'] : esc_html__( '', 'text_domain' );
  		?>
  		<p>
         <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'text_domain' ); ?></label>
  		    <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
  		</p>
     <p>
-        <label for="<?php echo esc_attr( $this->get_field_id( 'cto_toDate' ) ); ?>"><?php esc_attr_e( 'To date:', 'text_domain' ); ?></label>
+        <label for="<?php echo esc_attr( $this->get_field_id( 'cto_toDate' ) ); ?>"><?php esc_attr_e( 'End date:', 'text_domain' ); ?></label>
  		    <input class="widefat aBDatepicker" id="<?php echo esc_attr( $this->get_field_id( 'cto_toDate' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'cto_toDate' ) ); ?>" type="text" value="<?php echo esc_attr( $cto_toDate ); ?>">
         <script type="text/javascript">
         jQuery(document).ready(function($) {
           var aBDatePicker = $('.aBDatepicker');
+          aBDatePicker.on('hover',function(){
+            if (aBDatePicker[0]) {
+                //check if datepicker exists as a function
+                if (typeof aBDatePicker.datepicker == 'function') {
+                  aBDatePicker.datepicker({
+                      dateFormat: $(self).attr('data-dateformat')
+                  });
+                }
+            }
+          });
 
-          if (aBDatePicker[0]) {
-              //check if datepicker exists as a function
-              if (typeof aBDatePicker.datepicker == 'function') {
-                aBDatePicker.datepicker({
-                    dateFormat: $(self).attr('data-dateformat')
-                });
-
-              }
-          }
 
           //Timepicker
           var aBTimepicker = $('.aBTimepicker');
 
           if (aBTimepicker[0]) {
               if (typeof aBTimepicker.timepicker == 'function') {
-                  aBTimepicker.timepicker();
+                  aBTimepicker.timepicker({timeFormat: 'h:i A',});
               }
           }
         });
         </script>
  		</p>
     <p>
-        <label for="<?php echo esc_attr( $this->get_field_id( 'cto_toTime' ) ); ?>"><?php esc_attr_e( 'To time:', 'text_domain' ); ?></label>
+        <label for="<?php echo esc_attr( $this->get_field_id( 'cto_toTime' ) ); ?>"><?php esc_attr_e( 'END time:', 'text_domain' ); ?></label>
  		    <input class="widefat aBTimepicker" id="<?php echo esc_attr( $this->get_field_id( 'cto_toTime' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'cto_toTime' ) ); ?>" type="text" value="<?php echo esc_attr( $cto_toTime ); ?>">
  		</p>
 
@@ -199,7 +231,7 @@
  } // class Foo_Widget
 
  // register Foo_Widget widget
-function register_foo_widget() {
+function register_cto_widget() {
     register_widget( 'Foo_Widget' );
 }
-add_action( 'widgets_init', 'register_foo_widget' );
+add_action( 'widgets_init', 'register_cto_widget' );
