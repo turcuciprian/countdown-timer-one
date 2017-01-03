@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: Countdown Timer, post text
 Requires at least: 4.0
 Tested up to: 4.7
-Stable tag: 1.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -45,6 +45,10 @@ just go to appearance -> widgets and drag the countdown timer widget in a sideba
 
 = 1.0 =
 * First Version of the plugin
+
+= 1.0.1 =
+
+Changed some function names
 
 == Upgrade Notice ==
 
