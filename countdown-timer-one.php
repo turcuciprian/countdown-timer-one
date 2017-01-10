@@ -28,7 +28,7 @@
        //*
              wp_enqueue_media();
        wp_enqueue_script('jquery-ui-core');
-       wp_enqueue_script('jquery-ui-widget', true, array('jquery-ui-core'));
+       wp_enqueue_script('jquery-ui-widget', false, array('jquery-ui-core'));
        wp_enqueue_script('jquery-ui-mouse', false, array('jquery-ui-core'));
        wp_enqueue_script('jquery-ui-datepicker', false, array('jquery-ui-core'));
        wp_enqueue_script('jquery-ui-draggable', false, array('jquery-ui-core', 'jquery-ui-widget', 'jquery-ui-mouse'));
@@ -50,7 +50,7 @@
        $fileExists = false;
 
        if($exportType==='theme'){
-         $file = get_template_diregabory_uri().'/'.$path;
+         $file = get_template_directory_uri().'/'.$path;
        }else{
          $file = plugin_dir_url(__FILE__).$path;
        }
