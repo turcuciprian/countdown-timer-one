@@ -3,32 +3,32 @@
   Plugin Name: Countdown Timer One
   Plugin URI: http://ciprianturcu.com/countdown-timer-one/
   Description: create a countdown timer widget that's configurable and dynamic so that you can make a countdown timer widget
-  Version: 1.0
-  Author: ciprianturcu
+  Version: 1.0.1
+  Author: turcuciprian
   Author URI: http://ciprianturcu.com
   License: GPLv2 or later
   Text Domain: countdown-timer-one
  */
 
- if(!function_exists('ctoEnqueueAll')){
+ if(!function_exists('cto_EnqueueAll')){
    //Admin scripts and styles
-   add_action('admin_enqueue_scripts', 'ctoEnqueueAll');
+   add_action('admin_enqueue_scripts', 'cto_EnqueueAll');
    //Admin scripts and styles callback
-   function ctoEnqueueAll()
+   function cto_EnqueueAll()
    {
      //*
      // CSS
      //*
-     ctoExists('jQueryUiCore', 'ab-src/css/jquery-ui.css', 'style',array(),'plugin');
-     ctoExists('ctoTimepicker', 'ab-src/css/jquery.timepicker.css', 'style',array(),'plugin');
-     ctoExists('customctoStyle', 'ab-src/css/abStyle.css', 'style',array(),'plugin');
+     cto_Exists('jQueryUiCore', 'ab-src/css/jquery-ui.css', 'style',array(),'plugin');
+     cto_Exists('cto_Timepicker', 'ab-src/css/jquery.timepicker.css', 'style',array(),'plugin');
+     cto_Exists('cto_customStyle', 'ab-src/css/abStyle.css', 'style',array(),'plugin');
 
        //*
        //  Custom JS
        //*
              wp_enqueue_media();
        wp_enqueue_script('jquery-ui-core');
-       wp_enqueue_script('jquery-ui-widget', false, array('jquery-ui-core'));
+       wp_enqueue_script('jquery-ui-widget', true, array('jquery-ui-core'));
        wp_enqueue_script('jquery-ui-mouse', false, array('jquery-ui-core'));
        wp_enqueue_script('jquery-ui-datepicker', false, array('jquery-ui-core'));
        wp_enqueue_script('jquery-ui-draggable', false, array('jquery-ui-core', 'jquery-ui-widget', 'jquery-ui-mouse'));
@@ -36,21 +36,21 @@
        //*
        //  Custom JS
        //*
-       ctoExists('ctoTimepicker', 'ab-src/js/jquery.timepicker.min.js', 'script',array('jquery-ui-core'),'plugin');
-       ctoExists('ctoCustomScript', 'ab-src/js/abScript.js', 'script',array(),'plugin');
+       cto_Exists('cto_Timepicker', 'ab-src/js/jquery.timepicker.min.js', 'script',array('jquery-ui-core'),'plugin');
+       cto_Exists('cto_CustomScript', 'ab-src/js/abScript.js', 'script',array(),'plugin');
      }
    }
 
 
 
 
-   if(!function_exists('ctoExists')){
-     function ctoExists($name, $path, $type,$dependencies = array(),$exportType)
+   if(!function_exists('cto_Exists')){
+     function cto_Exists($name, $path, $type,$dependencies = array(),$exportType)
      {
        $fileExists = false;
 
        if($exportType==='theme'){
-         $file = get_template_directory_uri().'/'.$path;
+         $file = get_template_diregabory_uri().'/'.$path;
        }else{
          $file = plugin_dir_url(__FILE__).$path;
        }
@@ -114,7 +114,7 @@
     <div id="ctoWidget">
     </div>
     <script type="text/javascript">
-    function getTimeRemaining(endtime){
+    function cto_getTimeRemaining(endtime){
       var t = Date.parse(endtime) - Date.parse(new Date());
       var seconds = Math.floor( (t/1000) % 60 );
       var minutes = Math.floor( (t/1000/60) % 60 );
@@ -128,10 +128,10 @@
         'seconds': seconds
       };
     }
-    function initializeClock(id, endtime){
+    function cto_initializeClock(id, endtime){
   var clock = document.getElementById(id);
   var timeinterval = setInterval(function(){
-    var t = getTimeRemaining(endtime);
+    var t = cto_getTimeRemaining(endtime);
     clock.innerHTML = 'days: ' + t.days + '<br>' +
                       'hours: '+ t.hours + '<br>' +
                       'minutes: ' + t.minutes + '<br>' +
@@ -142,8 +142,8 @@
   },1000);
 }
 var hrs = -(new Date().getTimezoneOffset() / 60)
-var ctoDeadline = '<?php echo $instance['cto_toDate'];?> <?php echo $instance['cto_toTime'];?> GMT'+hrs;
-initializeClock('ctoWidget', ctoDeadline);
+var cto_Deadline = '<?php echo $instance['cto_toDate'];?> <?php echo $instance['cto_toTime'];?> GMT'+hrs;
+cto_initializeClock('ctoWidget', cto_Deadline);
 var d = new Date()
 var n = d.getTimezoneOffset();
 console.log(n/60);
@@ -231,7 +231,7 @@ console.log(n/60);
  } // class Foo_Widget
 
  // register Foo_Widget widget
-function register_cto_widget() {
+function cto_register_widget() {
     register_widget( 'Foo_Widget' );
 }
-add_action( 'widgets_init', 'register_cto_widget' );
+add_action( 'widgets_init', 'cto_register_widget' );
