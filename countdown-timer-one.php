@@ -3,7 +3,7 @@
   Plugin Name: Countdown Timer One
   Plugin URI: http://ciprianturcu.com/countdown-timer-one/
   Description: create a countdown timer widget that's configurable and dynamic so that you can make a countdown timer widget
-  Version: 1.0.1
+  Version: 1.0.3
   Author: turcuciprian
   Author URI: http://ciprianturcu.com
   License: GPLv2 or later
@@ -80,16 +80,16 @@
 
 
  /**
-  * Adds Foo_Widget widget.
+  * Adds cto_widget widget.
   */
- class Foo_Widget extends WP_Widget {
+ class CTO_Widget extends WP_Widget {
 
  	/**
  	 * Register widget with WordPress.
  	 */
  	function __construct() {
  		parent::__construct(
- 			'foo_widget', // Base ID
+ 			'CTO_Widget', // Base ID
  			esc_html__( 'Countdown Timer One', 'text_domain' ), // Name
  			array( 'description' => esc_html__( 'CTO Widget', 'text_domain' ), ) // Args
  		);
@@ -131,11 +131,38 @@
     function cto_initializeClock(id, endtime){
   var clock = document.getElementById(id);
   var timeinterval = setInterval(function(){
+
+    <?php
+    $delimiter = '';
+    switch($instance['cto_delimiter']){
+      case 1:
+        $delimiter = '<br/>';
+      break;
+      case 2:
+        $delimiter = ' - ';
+      break;
+      case 3:
+        $delimiter = ' &sol; ';
+      break;
+      case 4:
+        $delimiter = ' &bsol; ';
+      break;
+      case 5:
+        $delimiter = ' &amp; ';
+      break;
+      case 6:
+        $delimiter = ' &verbar; ';
+      break;
+      default:
+      break;
+    }
+    ?>
+    var delimiter = '<?php echo $delimiter;?>';
     var t = cto_getTimeRemaining(endtime);
-    clock.innerHTML = 'days: ' + t.days + '<br>' +
-                      'hours: '+ t.hours + '<br>' +
-                      'minutes: ' + t.minutes + '<br>' +
-                      'seconds: ' + t.seconds;
+    clock.innerHTML =  t.days +' days '+ delimiter +
+                      t.hours + ' hours '+ delimiter +
+                      t.minutes+' minutes ' + delimiter +
+                      t.seconds+' seconds ';
     if(t.total<=0){
       clearInterval(timeinterval);
     }
@@ -146,7 +173,6 @@ var cto_Deadline = '<?php echo $instance['cto_toDate'];?> <?php echo $instance['
 cto_initializeClock('ctoWidget', cto_Deadline);
 var d = new Date()
 var n = d.getTimezoneOffset();
-console.log(n/60);
     </script>
     <?php
  		echo $args['after_widget'];
@@ -163,7 +189,8 @@ console.log(n/60);
 
     $title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'New title', 'text_domain' );
     $cto_toDate = (! empty( $instance['cto_toDate'] ) && isset($instance['cto_toDate'])) ? $instance['cto_toDate'] : esc_html__( '', 'text_domain' );
- 		$cto_toTime = (! empty( $instance['cto_toTime'] ) && isset($instance['cto_toTime'])) ? $instance['cto_toTime'] : esc_html__( '', 'text_domain' );
+    $cto_toTime = (! empty( $instance['cto_toTime'] ) && isset($instance['cto_toTime'])) ? $instance['cto_toTime'] : esc_html__( '', 'text_domain' );
+ 		$cto_delimiter = (! empty( $instance['cto_delimiter'] ) && isset($instance['cto_delimiter'])) ? $instance['cto_delimiter'] : esc_html__( '', 'text_domain' );
  		?>
  		<p>
         <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'text_domain' ); ?></label>
@@ -199,9 +226,20 @@ console.log(n/60);
         </script>
  		</p>
     <p>
-        <label for="<?php echo esc_attr( $this->get_field_id( 'cto_toTime' ) ); ?>"><?php esc_attr_e( 'END time:', 'text_domain' ); ?></label>
+        <label for="<?php echo esc_attr( $this->get_field_id( 'cto_toTime' ) ); ?>"><?php esc_attr_e( 'End time:', 'text_domain' ); ?></label>
  		    <input class="widefat aBTimepicker" id="<?php echo esc_attr( $this->get_field_id( 'cto_toTime' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'cto_toTime' ) ); ?>" type="text" value="<?php echo esc_attr( $cto_toTime ); ?>">
  		</p>
+    <p>
+      <label for="<?php echo esc_attr( $this->get_field_id( 'cto_delimiter' ) ); ?>"><?php esc_attr_e( 'Delimiter:', 'text_domain' ); ?></label><br/>
+      <select class="" name="<?php echo esc_attr( $this->get_field_name('cto_delimiter')); ?>">
+        <option value="1" <?php selected($cto_delimiter,1);?>>New Line</option>
+        <option value="2" <?php selected($cto_delimiter,2);?>>-</option>
+        <option value="3" <?php selected($cto_delimiter,3);?>>/</option>
+        <option value="4" <?php selected($cto_delimiter,4);?>>\</option>
+        <option value="5" <?php selected($cto_delimiter,5);?>>&amp;</option>
+        <option value="6" <?php selected($cto_delimiter,6);?>>|</option>
+      </select>
+    </p>
 
  		<?php
  	}
@@ -217,21 +255,19 @@ console.log(n/60);
  	 * @return array Updated safe values to be saved.
  	 */
  	public function update( $new_instance, $old_instance ) {
-
-
-
  		$instance = array();
     $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
     $instance['cto_toDate'] = ( ! empty( $new_instance['cto_toDate'] ) ) ? strip_tags( $new_instance['cto_toDate'] ) : '';
- 		$instance['cto_toTime'] = ( ! empty( $new_instance['cto_toTime'] ) ) ? strip_tags( $new_instance['cto_toTime'] ) : '';
+    $instance['cto_toTime'] = ( ! empty( $new_instance['cto_toTime'] ) ) ? strip_tags( $new_instance['cto_toTime'] ) : '';
+ 		$instance['cto_delimiter'] = ( ! empty( $new_instance['cto_delimiter'] ) ) ? strip_tags( $new_instance['cto_delimiter'] ) : '';
 
  		return $instance;
  	}
 
- } // class Foo_Widget
+ } // class CTO_Widget
 
- // register Foo_Widget widget
+ // register CTO_Widget widget
 function cto_register_widget() {
-    register_widget( 'Foo_Widget' );
+    register_widget( 'CTO_Widget' );
 }
 add_action( 'widgets_init', 'cto_register_widget' );

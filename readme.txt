@@ -3,8 +3,8 @@ Contributors: turcuciprian
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=MU4RJNNF74QKY
 Tags: Countdown Timer, post text
 Requires at least: 4.0
-Tested up to: 4.7
-Stable tag: 1.0.1
+Tested up to: 4.7.1
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,18 @@ A simple text countdown timer widget.
 
 Built with : http://admin-builder.com
 
-You can create and configure the deadline for a countdown timer in the form of a widget that you can apply to any sidebar.
+# Countdown Timer One
+
+A Plugin That's aimed to bring you a configurable Countdown Timer Widget that you can place anywhere in your sidevar and use to countdown to something. Easy, intuitive and focused.
+
+So Far the features are:
+* Countdown Timer is configurable as a widget
+* You can set a widget title
+* You can configure the delimiter
+* You can choose the end date from a datepicker
+* You can choose the time from a timepicker
+
+Built partially using http://admin-builder.com
 
 
 == Installation ==
@@ -38,7 +49,16 @@ just go to appearance -> widgets and drag the countdown timer widget in a sideba
 
 == Screenshots ==
 
-1. Admin Panel Look
+1. Admin Panel , Widgets, Time picker
+2. Admin Panel , Widgets, Delimiters
+3. Front End Delimiter -
+4. Admin Panel , Widgets, Date picker
+5. Front end Delimiter New line
+6. Front end Delimiter /
+7. Front end Delimiter \
+8. Front end Delimiter &
+8. Front end Delimiter |
+
 
 
 == Changelog ==
@@ -49,6 +69,14 @@ just go to appearance -> widgets and drag the countdown timer widget in a sideba
 = 1.0.1 =
 
 Changed some function names
+
+= 1.0.2 =
+
+Added delimiter option, changed order of timer format
+
+= 1.0.3 =
+
+Updated compatibility for the latest version of WordPress 4.7.1
 
 == Upgrade Notice ==
 
