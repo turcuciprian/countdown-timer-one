@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: Countdown Timer, post text
 Requires at least: 4.0
 Tested up to: 4.7.1
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -75,10 +75,19 @@ Added delimiter option, changed order of timer format
 
 Updated compatibility for the latest version of WordPress 4.7.1
 
+= 1.0.6 =
+
+* Added Styles option, to add color and font size) style the timer Text and number
+
+
 == Upgrade Notice ==
 
 = 1.0 =
 * First Version of the plugin
+
+= 1.0.6 =
+
+Nothing impacting database functionality.
 
 == Arbitrary section ==
 

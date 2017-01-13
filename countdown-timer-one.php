@@ -3,7 +3,7 @@
   Plugin Name: Countdown Timer One
   Plugin URI: http://ciprianturcu.com/countdown-timer-one/
   Description: create a countdown timer widget that's configurable and dynamic so that you can make a countdown timer widget
-  Version: 1.0.5
+  Version: 1.0.6
   Author: turcuciprian
   Author URI: http://ciprianturcu.com
   License: GPLv2 or later
