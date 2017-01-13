@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: Countdown Timer, post text
 Requires at least: 4.0
 Tested up to: 4.7.1
-Stable tag: 1.0.3
+Stable tag: 1.0.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,19 +12,16 @@ A simple text countdown timer widget.
 
 == Description ==
 
-Built with : http://admin-builder.com
-
-# Countdown Timer One
-
 A Plugin That's aimed to bring you a configurable Countdown Timer Widget that you can place anywhere in your sidevar and use to countdown to something. Easy, intuitive and focused.
 
 So Far the features are:
-* Countdown Timer is configurable as a widget
-* You can set a widget title
-* You can configure the delimiter
-* You can choose the end date from a datepicker
-* You can choose the time from a timepicker
-
+<ul>
+ <li>Countdown Timer is configurable as a widget</li>
+<li> You can set a widget title</li>
+<li> You can configure the delimiter</li>
+<li> You can choose the end date from a datepicker</li>
+<li> You can choose the time from a timepicker</li>
+</ul>
 Built partially using http://admin-builder.com
 
 
