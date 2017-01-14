@@ -131,15 +131,15 @@ var n = d.getTimezoneOffset();
  		</p>
     <p>
         <label for="<?php echo esc_attr( $this->get_field_id( 'cto_toDate' ) ); ?>"><?php esc_attr_e( 'End date:', 'text_domain' ); ?></label>
- 		    <input class="widefat aBDatepicker" id="<?php echo esc_attr( $this->get_field_id( 'cto_toDate' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'cto_toDate' ) ); ?>" type="text" value="<?php echo esc_attr( $cto_toDate ); ?>">
+ 		    <input class="widefat ctoDatePicker" id="<?php echo esc_attr( $this->get_field_id( 'cto_toDate' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'cto_toDate' ) ); ?>" type="text" value="<?php echo esc_attr( $cto_toDate ); ?>">
         <script type="text/javascript">
         jQuery(document).ready(function($) {
-          var aBDatePicker = $('.aBDatepicker');
-          aBDatePicker.on('hover',function(){
-            if (aBDatePicker[0]) {
+          var ctoDatePicker = $('.ctoDatePicker');
+          ctoDatePicker.on('hover',function(){
+            if (ctoDatePicker[0]) {
                 //check if datepicker exists as a function
-                if (typeof aBDatePicker.datepicker == 'function') {
-                  aBDatePicker.datepicker({
+                if (typeof ctoDatePicker.datepicker == 'function') {
+                  ctoDatePicker.datepicker({
                       dateFormat: $(self).attr('data-dateformat')
                   });
                 }
@@ -148,11 +148,10 @@ var n = d.getTimezoneOffset();
 
 
           //Timepicker
-          var aBTimepicker = $('.aBTimepicker');
-
-          if (aBTimepicker[0]) {
-              if (typeof aBTimepicker.timepicker == 'function') {
-                  aBTimepicker.timepicker({timeFormat: 'h:i A',});
+          var ctoTimepicker = $('.ctoTimepicker');
+          if (ctoTimepicker[0]) {
+              if (typeof ctoTimepicker.timepicker == 'function') {
+                  ctoTimepicker.timepicker({timeFormat: 'h:i A',});
               }
           }
           var ctoColorPicker = $('.ctoColorPicker');
@@ -169,7 +168,7 @@ var n = d.getTimezoneOffset();
  		</p>
     <p>
         <label for="<?php echo esc_attr( $this->get_field_id( 'cto_toTime' ) ); ?>"><?php esc_attr_e( 'End time:', 'text_domain' ); ?></label>
- 		    <input class="widefat aBTimepicker" id="<?php echo esc_attr( $this->get_field_id( 'cto_toTime' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'cto_toTime' ) ); ?>" type="text" value="<?php echo esc_attr( $cto_toTime ); ?>">
+ 		    <input class="widefat ctoTimepicker" id="<?php echo esc_attr( $this->get_field_id( 'cto_toTime' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'cto_toTime' ) ); ?>" type="text" value="<?php echo esc_attr( $cto_toTime ); ?>">
  		</p>
     <p>
       <label for="<?php echo esc_attr( $this->get_field_id( 'cto_delimiter' ) ); ?>"><?php esc_attr_e( 'Delimiter:', 'text_domain' ); ?></label><br/>
