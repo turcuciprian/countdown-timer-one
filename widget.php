@@ -38,6 +38,7 @@ private function returnDelimiter($del){
       $delimiter = ' &verbar; ';
     break;
     default:
+    $delimiter = '<br/>';
     break;
   }
   return $delimiter;
@@ -55,6 +56,8 @@ private function returnDelimiter($del){
  		if ( ! empty( $instance['title'] ) ) {
  			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
  		}
+    $cto_NumbersFontSize = (! empty( $instance['cto_NumbersFontSize'] ) && isset($instance['cto_NumbersFontSize'])) ? $instance['cto_NumbersFontSize'] : esc_html__( '', 'text_domain' );
+    $cto_boldNumbers = (! empty( $instance['cto_boldNumbers'] ) && isset($instance['cto_boldNumbers'])) ? $instance['cto_boldNumbers'] : esc_html__( '', 'text_domain' );
 
     ?>
 
@@ -85,10 +88,10 @@ private function returnDelimiter($del){
     ?>
     var delimiter = '<?php echo $delimiter;?>';
     var t = cto_getTimeRemaining(endtime);
-    clock.innerHTML =  t.days +' days '+ delimiter +
-                      t.hours + ' hours '+ delimiter +
-                      t.minutes+' minutes ' + delimiter +
-                      t.seconds+' seconds ';
+    clock.innerHTML =  '<span  style="font-size:<?php echo $cto_NumbersFontSize; ?>">'+t.days +'</span> days '+ delimiter +
+                      '<span  style="font-size:<?php echo $cto_NumbersFontSize; ?>">'+t.hours +'</span> hours '+ delimiter +
+                      '<span  style="font-size:<?php echo $cto_NumbersFontSize; ?>">'+t.minutes +'</span> minutes ' + delimiter +
+                      '<span  style="font-size:<?php echo $cto_NumbersFontSize; ?>">'+t.seconds +'</span> seconds ';
     if(t.total<=0){
       clearInterval(timeinterval);
     }
@@ -116,7 +119,9 @@ var n = d.getTimezoneOffset();
     $title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'New title', 'text_domain' );
     $cto_toDate = (! empty( $instance['cto_toDate'] ) && isset($instance['cto_toDate'])) ? $instance['cto_toDate'] : esc_html__( '', 'text_domain' );
     $cto_toTime = (! empty( $instance['cto_toTime'] ) && isset($instance['cto_toTime'])) ? $instance['cto_toTime'] : esc_html__( '', 'text_domain' );
- 		$cto_delimiter = (! empty( $instance['cto_delimiter'] ) && isset($instance['cto_delimiter'])) ? $instance['cto_delimiter'] : esc_html__( '', 'text_domain' );
+    $cto_delimiter = (! empty( $instance['cto_delimiter'] ) && isset($instance['cto_delimiter'])) ? $instance['cto_delimiter'] : esc_html__( '', 'text_domain' );
+ 		$cto_NumbersFontSize = (! empty( $instance['cto_NumbersFontSize'] ) && isset($instance['cto_NumbersFontSize'])) ? $instance['cto_NumbersFontSize'] : esc_html__( '', 'text_domain' );
+    $cto_boldNumbers = (! empty( $instance['cto_boldNumbers'] ) && isset($instance['cto_boldNumbers'])) ? $instance['cto_boldNumbers'] : esc_html__( '', 'text_domain' );
  		?>
  		<p>
         <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'text_domain' ); ?></label>
@@ -166,21 +171,41 @@ var n = d.getTimezoneOffset();
         <option value="6" <?php selected($cto_delimiter,6);?>>|</option>
       </select>
     </p>
+    <p>
+      <label for="<?php echo esc_attr( $this->get_field_id( 'cto_NumbersFontSize' ) ); ?>"><?php esc_attr_e( 'Numbers Font Size:', 'text_domain' ); ?></label><br/>
+      <select class="" name="<?php echo esc_attr( $this->get_field_name('cto_NumbersFontSize')); ?>">
+        <option value="11px" <?php selected($cto_NumbersFontSize,'11px',true);?>>Tiny (11px)</option>
+        <option value="14px" <?php selected($cto_NumbersFontSize,'14px',true);?>>Small(14px)</option>
+        <option value="16px" <?php selected($cto_NumbersFontSize,'16px',true);?>>Normal (16px)</option>
+        <option value="24px" <?php selected($cto_NumbersFontSize,'24px',true);?>>Big (24px)</option>
+        <option value="36px" <?php selected($cto_NumbersFontSize,'36px',true);?>>Large (36px)</option>
+        <option value="42px" <?php selected($cto_NumbersFontSize,'42px',true);?>>Huge (42px)</option>
+      </select>
+    </p>
+    <p>
+        <input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'cto_boldNumbers' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'cto_boldNumbers' ) ); ?>" type="checkbox" value="true" <?php checked($cto_boldNumbers,'true'); ?>>
+        <label for="<?php echo esc_attr( $this->get_field_id( 'cto_boldNumbers' ) ); ?>"><?php esc_attr_e( ' - Bold Numbers:', 'text_domain' ); ?></label>
+
+ 		</p>
     <?php
       $delimiter = $this->returnDelimiter($cto_delimiter);
+      $cto_boldNumbersString = 'normal';
+      if($cto_boldNumbers==='true'){
+        $cto_boldNumbersString = 'bold';
+      }
     ?>
     <h3>Result Preview:</h3>
 <p class="preview">
-  <span class="day">99</span>
+  <span class="day" style="font-size:<?php echo $cto_NumbersFontSize; ?>;font-weight:<?php echo $cto_boldNumbersString;?>">99</span>
   <span class="dayText">Days</span><?php echo $delimiter; ?>
 
-  <span class="hour">24</span>
+  <span class="hour" style="font-size:<?php echo $cto_NumbersFontSize; ?>;font-weight:<?php echo $cto_boldNumbersString;?>">24</span>
   <span class="dayText">Hours</span><?php echo $delimiter; ?>
 
-  <span class="minute">59</span>
+  <span class="minute" style="font-size:<?php echo $cto_NumbersFontSize; ?>;font-weight:<?php echo $cto_boldNumbersString;?>">59</span>
   <span class="dayText">Minutes</span><?php echo $delimiter; ?>
 
-  <span class="second">59</span>
+  <span class="second" style="font-size:<?php echo $cto_NumbersFontSize; ?>;font-weight:<?php echo $cto_boldNumbersString;?>">59</span>
   <span class="dayText">Seconds</span>
 </p>
  		<?php
@@ -201,7 +226,9 @@ var n = d.getTimezoneOffset();
     $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
     $instance['cto_toDate'] = ( ! empty( $new_instance['cto_toDate'] ) ) ? strip_tags( $new_instance['cto_toDate'] ) : '';
     $instance['cto_toTime'] = ( ! empty( $new_instance['cto_toTime'] ) ) ? strip_tags( $new_instance['cto_toTime'] ) : '';
- 		$instance['cto_delimiter'] = ( ! empty( $new_instance['cto_delimiter'] ) ) ? strip_tags( $new_instance['cto_delimiter'] ) : '';
+    $instance['cto_delimiter'] = ( ! empty( $new_instance['cto_delimiter'] ) ) ? strip_tags( $new_instance['cto_delimiter'] ) : '';
+    $instance['cto_NumbersFontSize'] = ( ! empty( $new_instance['cto_NumbersFontSize'] ) ) ? strip_tags( $new_instance['cto_NumbersFontSize'] ) : '';
+ 		$instance['cto_boldNumbers'] = ( ! empty( $new_instance['cto_boldNumbers'] ) ) ? strip_tags( $new_instance['cto_boldNumbers'] ) : '';
 
  		return $instance;
  	}
