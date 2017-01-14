@@ -21,13 +21,16 @@
      //*
      cto_Exists('jQueryUiCore', 'src/css/jquery-ui.css', 'style',array(),'plugin');
      cto_Exists('cto_Timepicker', 'src/css/jquery.timepicker.css', 'style',array(),'plugin');
+     cto_Exists('cto_iris', 'src/css/iris.min.css', 'style',array(),'plugin');
      cto_Exists('cto_customStyle', 'src/css/abStyle.css', 'style',null,'plugin');
 
        //*
        //  Custom JS
        //*
-             wp_enqueue_media();
+       wp_enqueue_media();
        wp_enqueue_script('jquery-ui-core');
+       wp_enqueue_script('jquery-ui-draggable');
+       wp_enqueue_script('jquery-ui-slider');
        wp_enqueue_script('jquery-ui-widget', false, array('jquery-ui-core'));
        wp_enqueue_script('jquery-ui-mouse', false, array('jquery-ui-core'));
        wp_enqueue_script('jquery-ui-datepicker', false, array('jquery-ui-core'));
@@ -36,8 +39,8 @@
        //*
        //  Custom JS
        //*
-       cto_Exists('cto_iris', 'src/js/iris.js', 'script',array('jquery-ui-core'),'plugin');
-       cto_Exists('cto_color', 'src/js/color.js', 'script',array('cto_iris'),'plugin');
+       cto_Exists('cto_color', 'src/js/color.js', 'script',array('jquery'),'plugin');
+       cto_Exists('cto_iris', 'src/js/iris.js', 'script',array('jquery-ui-core', 'jquery-ui-draggable', 'jquery-ui-slider'),'plugin');
        cto_Exists('cto_Timepicker', 'src/js/jquery.timepicker.min.js', 'script',array('jquery-ui-core'),'plugin');
        cto_Exists('cto_CustomScript', 'src/js/script.js', 'script',array(),'plugin');
      }

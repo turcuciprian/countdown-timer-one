@@ -58,6 +58,7 @@ private function returnDelimiter($del){
  		}
     $cto_NumbersFontSize = (! empty( $instance['cto_NumbersFontSize'] ) && isset($instance['cto_NumbersFontSize'])) ? $instance['cto_NumbersFontSize'] : esc_html__( '', 'text_domain' );
     $cto_boldNumbers = (! empty( $instance['cto_boldNumbers'] ) && isset($instance['cto_boldNumbers'])) ? $instance['cto_boldNumbers'] : esc_html__( '', 'text_domain' );
+    $cto_colorPicker = (! empty( $instance['cto_colorPicker'] ) && isset($instance['cto_colorPicker'])) ? $instance['cto_colorPicker'] : esc_html__( '', 'text_domain' );
 
     ?>
 
@@ -122,6 +123,7 @@ var n = d.getTimezoneOffset();
     $cto_delimiter = (! empty( $instance['cto_delimiter'] ) && isset($instance['cto_delimiter'])) ? $instance['cto_delimiter'] : esc_html__( '', 'text_domain' );
  		$cto_NumbersFontSize = (! empty( $instance['cto_NumbersFontSize'] ) && isset($instance['cto_NumbersFontSize'])) ? $instance['cto_NumbersFontSize'] : esc_html__( '', 'text_domain' );
     $cto_boldNumbers = (! empty( $instance['cto_boldNumbers'] ) && isset($instance['cto_boldNumbers'])) ? $instance['cto_boldNumbers'] : esc_html__( '', 'text_domain' );
+    $cto_colorPicker = (! empty( $instance['cto_colorPicker'] ) && isset($instance['cto_colorPicker'])) ? $instance['cto_colorPicker'] : esc_html__( '', 'text_domain' );
  		?>
  		<p>
         <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'text_domain' ); ?></label>
@@ -153,7 +155,16 @@ var n = d.getTimezoneOffset();
                   aBTimepicker.timepicker({timeFormat: 'h:i A',});
               }
           }
+          var ctoColorPicker = $('.ctoColorPicker');
+          if (ctoColorPicker[0]) {
+              if (typeof ctoColorPicker.iris == 'function') {
+                  ctoColorPicker.iris({
+                      hide: true
+                  });
+              }
+          }
         });
+
         </script>
  		</p>
     <p>
@@ -188,8 +199,8 @@ var n = d.getTimezoneOffset();
 
  		</p>
     <p>
-        <input class="widefat ctoColorPicker" id="<?php echo esc_attr( $this->get_field_id( 'cto_boldNumbers' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'cto_boldNumbers' ) ); ?>" type="textbox" value="true" <?php checked($cto_boldNumbers,'true'); ?>>
-        <label for="<?php echo esc_attr( $this->get_field_id( 'cto_boldNumbers' ) ); ?>"><?php esc_attr_e( ' - Bold Numbers:', 'text_domain' ); ?></label>
+      <label for="<?php echo esc_attr( $this->get_field_id( 'cto_colorPicker' ) ); ?>"><?php esc_attr_e( 'Text Color:', 'text_domain' ); ?></label>
+        <input class="ctoColorPicker" id="<?php echo esc_attr( $this->get_field_id( 'cto_colorPicker' ) ); ?>" readonly name="<?php echo esc_attr( $this->get_field_name( 'cto_colorPicker' ) ); ?>" type="textbox" value="<?php echo $cto_colorPicker; ?>" size="10">
 
  		</p>
 
@@ -200,18 +211,25 @@ var n = d.getTimezoneOffset();
         $cto_boldNumbersString = 'bold';
       }
     ?>
+    <style media="screen">
+      .ctoNumbers{
+        font-size:<?php echo $cto_NumbersFontSize; ?>;
+        font-weight:<?php echo $cto_boldNumbersString;?>;
+        color:<?php echo $cto_colorPicker;?>;
+      }
+    </style>
     <h3>Result Preview:</h3>
 <p class="preview">
-  <span class="day" style="font-size:<?php echo $cto_NumbersFontSize; ?>;font-weight:<?php echo $cto_boldNumbersString;?>">99</span>
+  <span class="ctoNumbers day" style="">99</span>
   <span class="dayText">Days</span><?php echo $delimiter; ?>
 
-  <span class="hour" style="font-size:<?php echo $cto_NumbersFontSize; ?>;font-weight:<?php echo $cto_boldNumbersString;?>">24</span>
+  <span class="ctoNumbers hour">24</span>
   <span class="dayText">Hours</span><?php echo $delimiter; ?>
 
-  <span class="minute" style="font-size:<?php echo $cto_NumbersFontSize; ?>;font-weight:<?php echo $cto_boldNumbersString;?>">59</span>
+  <span class="ctoNumbers minute">59</span>
   <span class="dayText">Minutes</span><?php echo $delimiter; ?>
 
-  <span class="second" style="font-size:<?php echo $cto_NumbersFontSize; ?>;font-weight:<?php echo $cto_boldNumbersString;?>">59</span>
+  <span class="ctoNumbers second">59</span>
   <span class="dayText">Seconds</span>
 </p>
  		<?php
@@ -234,7 +252,8 @@ var n = d.getTimezoneOffset();
     $instance['cto_toTime'] = ( ! empty( $new_instance['cto_toTime'] ) ) ? strip_tags( $new_instance['cto_toTime'] ) : '';
     $instance['cto_delimiter'] = ( ! empty( $new_instance['cto_delimiter'] ) ) ? strip_tags( $new_instance['cto_delimiter'] ) : '';
     $instance['cto_NumbersFontSize'] = ( ! empty( $new_instance['cto_NumbersFontSize'] ) ) ? strip_tags( $new_instance['cto_NumbersFontSize'] ) : '';
- 		$instance['cto_boldNumbers'] = ( ! empty( $new_instance['cto_boldNumbers'] ) ) ? strip_tags( $new_instance['cto_boldNumbers'] ) : '';
+    $instance['cto_boldNumbers'] = ( ! empty( $new_instance['cto_boldNumbers'] ) ) ? strip_tags( $new_instance['cto_boldNumbers'] ) : '';
+ 		$instance['cto_colorPicker'] = ( ! empty( $new_instance['cto_colorPicker'] ) ) ? strip_tags( $new_instance['cto_colorPicker'] ) : '';
 
  		return $instance;
  	}
