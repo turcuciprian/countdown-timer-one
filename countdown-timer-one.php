@@ -12,6 +12,7 @@
 
  if(!function_exists('cto_AdminEnqueueAll')){
    //Admin scripts and styles
+
    add_action('admin_enqueue_scripts', 'cto_AdminEnqueueAll');
    //Admin scripts and styles callback
    function cto_AdminEnqueueAll()
@@ -27,7 +28,6 @@
        //*
        //  Custom JS
        //*
-       wp_enqueue_media();
        wp_enqueue_script('jquery-ui-core');
        wp_enqueue_script('jquery-ui-draggable');
        wp_enqueue_script('jquery-ui-slider');
@@ -44,6 +44,8 @@
        cto_Exists('cto_Timepicker', 'src/js/jquery.timepicker.min.js', 'script',array('jquery-ui-core'),'plugin');
        cto_Exists('cto_CustomScript', 'src/js/script.js', 'script',array(),'plugin');
      }
+     add_action('customize_controls_enqueue_scripts', 'cto_AdminEnqueueAll');
+
    }
 
 
@@ -84,3 +86,14 @@
 
 
 require_once 'widget.php';
+
+
+
+function ctoRemoveCustomizer( $components ) {
+    $i = array_search( 'widgets', $components );
+    if ( false !== $i ) {
+        unset( $components[ $i ] );
+    }
+    return $components;
+}
+add_filter( 'customize_loaded_components', 'ctoRemoveCustomizer' );

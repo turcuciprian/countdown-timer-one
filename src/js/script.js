@@ -1,25 +1,25 @@
 jQuery(document).ready(function($) {
-  var aBDatePicker = $('.aBDatepicker');
-  var aBTimepicker = $('.aBTimepicker');
+  var ctoDatePicker = $('.ctoDatePicker');
+  var ctoTimepicker = $('.ctoTimepicker');
   var ctoColorPicker = $('.ctoColorPicker');
+  console.log('sddd');
 
-  
-  aBDatePicker.on('hover',function(){
-    if (aBDatePicker[0]) {
-        //check if datepicker exists as a function
-        if (typeof aBDatePicker.datepicker == 'function') {
-          aBDatePicker.datepicker({
-              dateFormat: $(self).attr('data-dateformat')
-          });
-        }
-    }
-  });
+  if (ctoDatePicker[0]) {
+    ctoDatePicker.on('hover',function(){
+      //check if datepicker exists as a function
+      if (typeof ctoDatePicker.datepicker == 'function') {
+        ctoDatePicker.datepicker({
+            dateFormat: $(self).attr('data-dateformat')
+        });
+      }
+    });
+}
 
 
   //Timepicker
-  if (aBTimepicker[0]) {
-      if (typeof aBTimepicker.timepicker == 'function') {
-          aBTimepicker.timepicker({timeFormat: 'h:i A',});
+  if (ctoTimepicker[0]) {
+      if (typeof ctoTimepicker.timepicker == 'function') {
+          ctoTimepicker.timepicker({timeFormat: 'h:i A',});
       }
   }
 

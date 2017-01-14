@@ -76,9 +76,10 @@ Updated compatibility for the latest version of WordPress 4.7.1
 * Added Styles option, to add bold and font size styles to the the timer number
 
 = 1.0.7 =
+
 * Change Numbers Color
 * The ability to Create Infinite Widgets
-* Datepicker and timepicker works in the Appearance -> Customizer View
+* Removed the widgets panel from the wordpress customizer
 
 
 == Upgrade Notice ==

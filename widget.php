@@ -58,9 +58,20 @@ private function returnDelimiter($del){
  		}
     $cto_NumbersFontSize = (! empty( $instance['cto_NumbersFontSize'] ) && isset($instance['cto_NumbersFontSize'])) ? $instance['cto_NumbersFontSize'] : esc_html__( '', 'text_domain' );
     $cto_boldNumbers = (! empty( $instance['cto_boldNumbers'] ) && isset($instance['cto_boldNumbers'])) ? $instance['cto_boldNumbers'] : esc_html__( '', 'text_domain' );
+    $cto_boldNumbersString = 'normal';
+    if($cto_boldNumbers==='true'){
+      $cto_boldNumbersString = 'bold';
+    }
     $cto_colorPicker = (! empty( $instance['cto_colorPicker'] ) && isset($instance['cto_colorPicker'])) ? $instance['cto_colorPicker'] : esc_html__( '', 'text_domain' );
 
     ?>
+    <style media="screen">
+      .ctoNumbers{
+        font-size:<?php echo $cto_NumbersFontSize; ?>;
+        font-weight:<?php echo $cto_boldNumbersString;?>;
+        color:<?php echo $cto_colorPicker;?>;
+      }
+    </style>
 
     <div id="ctoWidget">
     </div>
@@ -89,10 +100,10 @@ private function returnDelimiter($del){
     ?>
     var delimiter = '<?php echo $delimiter;?>';
     var t = cto_getTimeRemaining(endtime);
-    clock.innerHTML =  '<span  style="font-size:<?php echo $cto_NumbersFontSize; ?>">'+t.days +'</span> days '+ delimiter +
-                      '<span  style="font-size:<?php echo $cto_NumbersFontSize; ?>">'+t.hours +'</span> hours '+ delimiter +
-                      '<span  style="font-size:<?php echo $cto_NumbersFontSize; ?>">'+t.minutes +'</span> minutes ' + delimiter +
-                      '<span  style="font-size:<?php echo $cto_NumbersFontSize; ?>">'+t.seconds +'</span> seconds ';
+    clock.innerHTML =  '<span class="ctoNumbers">'+t.days +'</span> days '+ delimiter +
+    '<span  class="ctoNumbers">'+t.hours +'</span> hours '+ delimiter +
+    '<span  class="ctoNumbers">'+t.minutes +'</span> minutes ' + delimiter +
+    '<span  class="ctoNumbers">'+t.seconds +'</span> seconds ';
     if(t.total<=0){
       clearInterval(timeinterval);
     }
@@ -199,7 +210,7 @@ var n = d.getTimezoneOffset();
  		</p>
     <p>
       <label for="<?php echo esc_attr( $this->get_field_id( 'cto_colorPicker' ) ); ?>"><?php esc_attr_e( 'Text Color:', 'text_domain' ); ?></label>
-        <input class="ctoColorPicker" id="<?php echo esc_attr( $this->get_field_id( 'cto_colorPicker' ) ); ?>" readonly name="<?php echo esc_attr( $this->get_field_name( 'cto_colorPicker' ) ); ?>" type="textbox" value="<?php echo $cto_colorPicker; ?>" size="10">
+        <input class="ctoColorPicker" id="<?php echo esc_attr( $this->get_field_id( 'cto_colorPicker' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'cto_colorPicker' ) ); ?>" type="textbox" value="<?php echo $cto_colorPicker; ?>" size="10">
 
  		</p>
 
