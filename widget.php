@@ -70,6 +70,10 @@ private function returnDelimiter($del){
 
     ?>
     <style media="screen">
+      .preview .ctoContainer{
+        font-size:<?php echo $cto_NumbersFontSize; ?>;
+        line-height: auto;
+      }
       .ctoNumbers_<?php echo $widgetID;?>{
         font-size:<?php echo $cto_NumbersFontSize; ?>;
         font-weight:<?php echo $cto_boldNumbersString;?>;
@@ -219,7 +223,6 @@ var n = d.getTimezoneOffset();
         <input class="ctoColorPicker" id="<?php echo esc_attr( $this->get_field_id( 'cto_colorPicker' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'cto_colorPicker' ) ); ?>" type="textbox" value="<?php echo $cto_colorPicker; ?>" size="10">
  		</p>
     <p>
-      <?php echo $cto_textTimerLayout;?>
       <label for="<?php echo esc_attr( $this->get_field_id( 'cto_textTimerLayout' ) ); ?>"><?php esc_attr_e( 'Timer Text Layout:', 'text_domain' ); ?></label><br/>
       <select class="" name="<?php echo esc_attr( $this->get_field_name('cto_textTimerLayout')); ?>">
         <option value="vNT" <?php selected($cto_textTimerLayout,'vNT',true);?>>Vertical - Numbers on Top</option>
@@ -244,18 +247,20 @@ var n = d.getTimezoneOffset();
       }
     </style>
     <h3>Result Preview:</h3>
-<p class="preview">
+<div class="preview">
   <?php $this->generatePerioud('day',99,'Days',$delimiter,$cto_textTimerLayout,$widgetID);?>
   <?php $this->generatePerioud('hour',24,'Hours',$delimiter,$cto_textTimerLayout,$widgetID);?>
   <?php $this->generatePerioud('minute',59,'Minutes',$delimiter,$cto_textTimerLayout,$widgetID);?>
   <?php $this->generatePerioud('second',59,'Seconds',$delimiter,$cto_textTimerLayout,$widgetID);?>
-</p>
+</div>
  		<?php
  	}
   private function generatePerioud($type,$Number,$labelString,$delimiter,$layoutType,$widgetID){
     ?>
-    <span class="ctoNumbers<?php echo $widgetID;?> <?php echo $type; ?>"><?php echo $Number;?></span>
-    <span class="ctoLabelText"><?php echo $labelString;?></span><?php echo $delimiter; ?>
+    <div class="ctoContainer">
+      <span class="ctoNumbers<?php echo $widgetID;?> <?php echo $type; ?>"><?php echo $Number;?></span>
+      <span class="ctoLabelText"><?php echo $labelString;?></span>
+    </div><?php echo $delimiter; ?>
     <?php
   }
 

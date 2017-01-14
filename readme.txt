@@ -26,6 +26,7 @@ So Far the features are:
 <li> Color Picker for numbers functionality</li>
 <li> Infinite number of widgets can be created</li>
 <li> Numbers above , numbers under, numbers to the left and to the right of the strings</li>
+<li> Infinite number of possible combinations of font size, color, bold/not bold,Text Layout</li>
 </ul>
 Built partially using http://admin-builder.com
 

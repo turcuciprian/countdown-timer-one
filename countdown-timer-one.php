@@ -23,7 +23,7 @@
      cto_Exists('jQueryUiCore', 'src/css/jquery-ui.css', 'style',array(),'plugin');
      cto_Exists('cto_Timepicker', 'src/css/jquery.timepicker.css', 'style',array(),'plugin');
      cto_Exists('cto_iris', 'src/css/iris.min.css', 'style',array(),'plugin');
-     cto_Exists('cto_customStyle', 'src/css/abStyle.css', 'style',null,'plugin');
+     cto_Exists('cto_customStyle', 'src/css/style.css', 'style',null,'plugin');
 
        //*
        //  Custom JS
