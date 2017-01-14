@@ -248,18 +248,39 @@ var n = d.getTimezoneOffset();
     </style>
     <h3>Result Preview:</h3>
 <div class="preview">
-  <?php $this->generatePerioud('day',99,'Days',$delimiter,$cto_textTimerLayout,$widgetID);?>
-  <?php $this->generatePerioud('hour',24,'Hours',$delimiter,$cto_textTimerLayout,$widgetID);?>
-  <?php $this->generatePerioud('minute',59,'Minutes',$delimiter,$cto_textTimerLayout,$widgetID);?>
-  <?php $this->generatePerioud('second',59,'Seconds',$delimiter,$cto_textTimerLayout,$widgetID);?>
+  <?php $this->generatePerioud('day',99,'Days',$delimiter,$cto_textTimerLayout,$widgetID,$cto_NumbersFontSize);?>
+  <?php $this->generatePerioud('hour',24,'Hours',$delimiter,$cto_textTimerLayout,$widgetID,$cto_NumbersFontSize);?>
+  <?php $this->generatePerioud('minute',59,'Minutes',$delimiter,$cto_textTimerLayout,$widgetID,$cto_NumbersFontSize);?>
+  <?php $this->generatePerioud('second',59,'Seconds',$delimiter,$cto_textTimerLayout,$widgetID,$cto_NumbersFontSize);?>
 </div>
  		<?php
  	}
-  private function generatePerioud($type,$Number,$labelString,$delimiter,$layoutType,$widgetID){
+  private function generatePerioud($type,$Number,$labelString,$delimiter,$layoutType,$widgetID,$fontSize){
     ?>
-    <div class="ctoContainer">
-      <span class="ctoNumbers<?php echo $widgetID;?> <?php echo $type; ?>"><?php echo $Number;?></span>
-      <span class="ctoLabelText"><?php echo $labelString;?></span>
+    <div class="ctoContainer" style="line-height:<?php echo $fontSize;?>;">
+      <?php
+      $nrText = '<span class="ctoNumbers'.$widgetID.' '.$type.'">'.$Number.'</span>';
+      $labelText = '  <span class="ctoLabelText">'.$labelString.'</span>';
+
+      switch($layoutType){
+        case 'vNT':
+        echo '<span class="ctoNumbers'.$widgetID.' '.$type.'">'.$Number.'</span>';
+        echo '<span class="ctoLabelText fDiv">'.$labelString.'</span>';
+        break;
+        case 'vLT':
+        echo '<span class="ctoLabelText fDiv">'.$labelString.'</span>';
+        echo '<span class="ctoNumbers'.$widgetID.' '.$type.'">'.$Number.'</span>';
+        break;
+        case 'hNL':
+        echo '<span class="ctoNumbers'.$widgetID.' '.$type.'">'.$Number.'</span>';
+        echo '<span class="ctoLabelText">'.$labelString.'</span>';
+        break;
+        case 'hNR':
+        echo '<span class="ctoLabelText">'.$labelString.'</span>';
+        echo '<span class="ctoNumbers'.$widgetID.' '.$type.'">'.$Number.'</span>';
+        break;
+      }
+      ?>
     </div><?php echo $delimiter; ?>
     <?php
   }

@@ -5,6 +5,15 @@
   background-color: #f6f6f6;
 }
 .preview .ctoContainer{
+  text-align: center;
   display: inline-block;
   line-height: 42px;
+}
+.preview .ctoContainer br,.preview .ctoLabelText{
+  line-height: 14px;
+}
+.fDiv{
+  float:left;
+  width:100%;
+  text-align: center;
 }
