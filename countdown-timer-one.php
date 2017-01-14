@@ -36,9 +36,10 @@
        //*
        //  Custom JS
        //*
+       cto_Exists('cto_iris', 'src/js/iris.js', 'script',array('jquery-ui-core'),'plugin');
+       cto_Exists('cto_color', 'src/js/color.js', 'script',array('cto_iris'),'plugin');
        cto_Exists('cto_Timepicker', 'src/js/jquery.timepicker.min.js', 'script',array('jquery-ui-core'),'plugin');
-       cto_Exists('cto_Timepicker', 'src/js/jquery.timepicker.min.js', 'script',array('jquery-ui-core'),'plugin');
-       cto_Exists('cto_CustomScript', 'src/js/abScript.js', 'script',array(),'plugin');
+       cto_Exists('cto_CustomScript', 'src/js/script.js', 'script',array(),'plugin');
      }
    }
 
