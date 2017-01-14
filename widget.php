@@ -187,6 +187,12 @@ var n = d.getTimezoneOffset();
         <label for="<?php echo esc_attr( $this->get_field_id( 'cto_boldNumbers' ) ); ?>"><?php esc_attr_e( ' - Bold Numbers:', 'text_domain' ); ?></label>
 
  		</p>
+    <p>
+        <input class="widefat ctoColorPicker" id="<?php echo esc_attr( $this->get_field_id( 'cto_boldNumbers' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'cto_boldNumbers' ) ); ?>" type="textbox" value="true" <?php checked($cto_boldNumbers,'true'); ?>>
+        <label for="<?php echo esc_attr( $this->get_field_id( 'cto_boldNumbers' ) ); ?>"><?php esc_attr_e( ' - Bold Numbers:', 'text_domain' ); ?></label>
+
+ 		</p>
+
     <?php
       $delimiter = $this->returnDelimiter($cto_delimiter);
       $cto_boldNumbersString = 'normal';
