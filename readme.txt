@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: Countdown Timer, post text
 Requires at least: 4.0
 Tested up to: 4.7.1
-Stable tag: 1.0.7
+Stable tag: 1.0.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,9 +21,6 @@ So Far the features are:
 <li> You can configure the delimiter</li>
 <li> You can choose the end date from a datepicker</li>
 <li> You can choose the time from a timepicker</li>
-<li> You can Change the font size for the numbers</li>
-<li> You can make the numbers Bold</li>
-
 </ul>
 Built partially using http://admin-builder.com
 
@@ -76,12 +73,6 @@ Updated compatibility for the latest version of WordPress 4.7.1
 
 * Added Styles option, to add bold and font size styles to the the timer number
 
-= 1.0.7 =
-
-* Change Number Color Feature
-* You can now create an infinite number of Countdown Timer Widgets
-* Datepicker and timepicker now works in customizer
-
 
 == Upgrade Notice ==
 
@@ -91,11 +82,6 @@ Updated compatibility for the latest version of WordPress 4.7.1
 = 1.0.6 =
 
 Nothing impacting database functionality.
-
-= 1.0.7 =
-
-Nothing impacting database functionality.
-
 
 == Arbitrary section ==
 
