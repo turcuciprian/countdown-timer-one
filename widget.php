@@ -52,6 +52,7 @@ private function returnDelimiter($del){
  	 * @param array $instance Saved values from database.
  	 */
  	public function widget( $args, $instance ) {
+    $widgetID = md5($instance['title'].rand (1 , 100));
  		echo $args['before_widget'];
  		if ( ! empty( $instance['title'] ) ) {
  			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
@@ -66,14 +67,14 @@ private function returnDelimiter($del){
 
     ?>
     <style media="screen">
-      .ctoNumbers{
+      .ctoNumbers_<?php echo $widgetID;?>{
         font-size:<?php echo $cto_NumbersFontSize; ?>;
         font-weight:<?php echo $cto_boldNumbersString;?>;
         color:<?php echo $cto_colorPicker;?>;
       }
     </style>
 
-    <div id="ctoWidget">
+    <div id="ctoWig<?php echo $widgetID;?>">
     </div>
     <script type="text/javascript">
     function cto_getTimeRemaining(endtime){
@@ -92,26 +93,26 @@ private function returnDelimiter($del){
     }
 
     function cto_initializeClock(id, endtime){
-  var clock = document.getElementById(id);
-  var timeinterval = setInterval(function(){
+      var clock = document.getElementById(id);
+      var timeinterval = setInterval(function(){
 
-    <?php
-    $delimiter = $this->returnDelimiter($instance['cto_delimiter']);
-    ?>
-    var delimiter = '<?php echo $delimiter;?>';
-    var t = cto_getTimeRemaining(endtime);
-    clock.innerHTML =  '<span class="ctoNumbers">'+t.days +'</span> days '+ delimiter +
-    '<span  class="ctoNumbers">'+t.hours +'</span> hours '+ delimiter +
-    '<span  class="ctoNumbers">'+t.minutes +'</span> minutes ' + delimiter +
-    '<span  class="ctoNumbers">'+t.seconds +'</span> seconds ';
-    if(t.total<=0){
-      clearInterval(timeinterval);
-    }
-  },1000);
+        <?php
+        $delimiter = $this->returnDelimiter($instance['cto_delimiter']);
+        ?>
+        var delimiter = '<?php echo $delimiter;?>';
+        var t = cto_getTimeRemaining(endtime);
+        clock.innerHTML =  '<span class="ctoNumbers_<?php echo $widgetID;?>">'+t.days +'</span> days '+ delimiter +
+        '<span  class="ctoNumbers_<?php echo $widgetID;?>">'+t.hours +'</span> hours '+ delimiter +
+        '<span  class="ctoNumbers_<?php echo $widgetID;?>">'+t.minutes +'</span> minutes ' + delimiter +
+        '<span  class="ctoNumbers_<?php echo $widgetID;?>">'+t.seconds +'</span> seconds ';
+        if(t.total<=0){
+          clearInterval(timeinterval);
+        }
+      },1000);
 }
 var hrs = -(new Date().getTimezoneOffset() / 60)
 var cto_Deadline = '<?php echo $instance['cto_toDate'];?> <?php echo $instance['cto_toTime'];?> GMT'+hrs;
-cto_initializeClock('ctoWidget', cto_Deadline);
+cto_initializeClock('ctoWig<?php echo $widgetID;?>', cto_Deadline);
 var d = new Date()
 var n = d.getTimezoneOffset();
     </script>

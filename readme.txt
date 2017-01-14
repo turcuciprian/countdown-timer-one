@@ -23,6 +23,8 @@ So Far the features are:
 <li> You can choose the time from a timepicker</li>
 <li> Numbers Bold option</li>
 <li> Numbers Font size Option</li>
+<li> Color Picker for numbers functionality</li>
+<li> Infinite number of widgets can be created</li>
 </ul>
 Built partially using http://admin-builder.com
 
@@ -51,6 +53,8 @@ just go to appearance -> widgets and drag the countdown timer widget in a sideba
 1. Admin Panel , Widgets
 2. Admin Panel , Widgets  Vertical, bold, huge
 3. Front end, Widget, result
+4. Front end Colored bold, multiple widgets example
+5. Backend with color picker example
 
 
 
@@ -79,7 +83,6 @@ Updated compatibility for the latest version of WordPress 4.7.1
 
 * Change Numbers Color
 * The ability to Create Infinite Widgets
-* Removed the widgets panel from the wordpress customizer
 
 
 == Upgrade Notice ==
