@@ -19,9 +19,9 @@
      //*
      // CSS
      //*
-     cto_Exists('jQueryUiCore', 'ab-src/css/jquery-ui.css', 'style',array(),'plugin');
-     cto_Exists('cto_Timepicker', 'ab-src/css/jquery.timepicker.css', 'style',array(),'plugin');
-     cto_Exists('cto_customStyle', 'ab-src/css/abStyle.css', 'style',null,'plugin');
+     cto_Exists('jQueryUiCore', 'src/css/jquery-ui.css', 'style',array(),'plugin');
+     cto_Exists('cto_Timepicker', 'src/css/jquery.timepicker.css', 'style',array(),'plugin');
+     cto_Exists('cto_customStyle', 'src/css/abStyle.css', 'style',null,'plugin');
 
        //*
        //  Custom JS
@@ -36,8 +36,9 @@
        //*
        //  Custom JS
        //*
-       cto_Exists('cto_Timepicker', 'ab-src/js/jquery.timepicker.min.js', 'script',array('jquery-ui-core'),'plugin');
-       cto_Exists('cto_CustomScript', 'ab-src/js/abScript.js', 'script',array(),'plugin');
+       cto_Exists('cto_Timepicker', 'src/js/jquery.timepicker.min.js', 'script',array('jquery-ui-core'),'plugin');
+       cto_Exists('cto_Timepicker', 'src/js/jquery.timepicker.min.js', 'script',array('jquery-ui-core'),'plugin');
+       cto_Exists('cto_CustomScript', 'src/js/abScript.js', 'script',array(),'plugin');
      }
    }
 
