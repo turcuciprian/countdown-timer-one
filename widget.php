@@ -64,6 +64,7 @@ private function returnDelimiter($del){
       $cto_boldNumbersString = 'bold';
     }
     $cto_colorPicker = (! empty( $instance['cto_colorPicker'] ) && isset($instance['cto_colorPicker'])) ? $instance['cto_colorPicker'] : esc_html__( '', 'text_domain' );
+    $cto_textTimerLayout = (! empty( $instance['cto_textTimerLayout'] ) && isset($instance['$cto_textTimerLayout'])) ? $instance['$cto_textTimerLayout'] : esc_html__( '', 'text_domain' );
 
     ?>
     <style media="screen">
@@ -128,7 +129,6 @@ var n = d.getTimezoneOffset();
  	 * @param array $instance Previously saved values from database.
  	 */
  	public function form( $instance ) {
-
     $title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'New title', 'text_domain' );
     $cto_toDate = (! empty( $instance['cto_toDate'] ) && isset($instance['cto_toDate'])) ? $instance['cto_toDate'] : esc_html__( '', 'text_domain' );
     $cto_toTime = (! empty( $instance['cto_toTime'] ) && isset($instance['cto_toTime'])) ? $instance['cto_toTime'] : esc_html__( '', 'text_domain' );
@@ -136,6 +136,7 @@ var n = d.getTimezoneOffset();
  		$cto_NumbersFontSize = (! empty( $instance['cto_NumbersFontSize'] ) && isset($instance['cto_NumbersFontSize'])) ? $instance['cto_NumbersFontSize'] : esc_html__( '', 'text_domain' );
     $cto_boldNumbers = (! empty( $instance['cto_boldNumbers'] ) && isset($instance['cto_boldNumbers'])) ? $instance['cto_boldNumbers'] : esc_html__( '', 'text_domain' );
     $cto_colorPicker = (! empty( $instance['cto_colorPicker'] ) && isset($instance['cto_colorPicker'])) ? $instance['cto_colorPicker'] : esc_html__( '', 'text_domain' );
+    $cto_textTimerLayout = (! empty( $instance['cto_textTimerLayout'] ) && isset($instance['cto_textTimerLayout'])) ? $instance['cto_textTimerLayout'] : esc_html__( '', 'text_domain' );
  		?>
  		<p>
         <label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title:', 'text_domain' ); ?></label>
@@ -212,8 +213,17 @@ var n = d.getTimezoneOffset();
     <p>
       <label for="<?php echo esc_attr( $this->get_field_id( 'cto_colorPicker' ) ); ?>"><?php esc_attr_e( 'Text Color:', 'text_domain' ); ?></label>
         <input class="ctoColorPicker" id="<?php echo esc_attr( $this->get_field_id( 'cto_colorPicker' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'cto_colorPicker' ) ); ?>" type="textbox" value="<?php echo $cto_colorPicker; ?>" size="10">
-
  		</p>
+    <p>
+      <?php echo $cto_textTimerLayout;?>
+      <label for="<?php echo esc_attr( $this->get_field_id( 'cto_textTimerLayout' ) ); ?>"><?php esc_attr_e( 'Timer Text Layout:', 'text_domain' ); ?></label><br/>
+      <select class="" name="<?php echo esc_attr( $this->get_field_name('cto_textTimerLayout')); ?>">
+        <option value="vNT" <?php selected($cto_textTimerLayout,'vNT',true);?>>Vertical - Numbers on Top</option>
+        <option value="vLT" <?php selected($cto_textTimerLayout,'vLT',true);?>>Vertical - Label on Top</option>
+        <option value="hNL" <?php selected($cto_textTimerLayout,'hNL',true);?>>Horizontal - Numbers on LEFT</option>
+        <option value="hNR" <?php selected($cto_textTimerLayout,'hNR',true);?>>Horizontal - Numbers on RIGHT</option>
+      </select>
+    </p>
 
     <?php
       $delimiter = $this->returnDelimiter($cto_delimiter);
@@ -264,7 +274,8 @@ var n = d.getTimezoneOffset();
     $instance['cto_delimiter'] = ( ! empty( $new_instance['cto_delimiter'] ) ) ? strip_tags( $new_instance['cto_delimiter'] ) : '';
     $instance['cto_NumbersFontSize'] = ( ! empty( $new_instance['cto_NumbersFontSize'] ) ) ? strip_tags( $new_instance['cto_NumbersFontSize'] ) : '';
     $instance['cto_boldNumbers'] = ( ! empty( $new_instance['cto_boldNumbers'] ) ) ? strip_tags( $new_instance['cto_boldNumbers'] ) : '';
- 		$instance['cto_colorPicker'] = ( ! empty( $new_instance['cto_colorPicker'] ) ) ? strip_tags( $new_instance['cto_colorPicker'] ) : '';
+    $instance['cto_colorPicker'] = ( ! empty( $new_instance['cto_colorPicker'] ) ) ? strip_tags( $new_instance['cto_colorPicker'] ) : '';
+ 		$instance['cto_textTimerLayout'] = ( ! empty( $new_instance['cto_textTimerLayout'] ) ) ? strip_tags( $new_instance['cto_textTimerLayout'] ) : '';
 
  		return $instance;
  	}
