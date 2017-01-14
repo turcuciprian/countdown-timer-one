@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: Countdown Timer, post text
 Requires at least: 4.0
 Tested up to: 4.7.1
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,6 +25,7 @@ So Far the features are:
 <li> Numbers Font size Option</li>
 <li> Color Picker for numbers functionality</li>
 <li> Infinite number of widgets can be created</li>
+<li> Numbers above , numbers under, numbers to the left and to the right of the strings</li>
 </ul>
 Built partially using http://admin-builder.com
 
@@ -84,6 +85,10 @@ Updated compatibility for the latest version of WordPress 4.7.1
 * Change Numbers Color
 * The ability to Create Infinite Widgets
 
+= 1.0.8 =
+
+Numbers above , numbers under, numbers to the left and to the right of the strings
+
 
 == Upgrade Notice ==
 
@@ -95,6 +100,10 @@ Updated compatibility for the latest version of WordPress 4.7.1
 Nothing impacting database functionality.
 
 = 1.0.7 =
+
+Nothing impacting database functionality.
+
+= 1.0.8 =
 
 Nothing impacting database functionality.
 
