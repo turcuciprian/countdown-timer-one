@@ -53,6 +53,8 @@ private function returnDelimiter($del){
  	 */
  	public function widget( $args, $instance ) {
     $widgetID = md5($instance['title'].rand (1 , 100));
+    $widgetID = substr($widgetID,0,4);
+
  		echo $args['before_widget'];
  		if ( ! empty( $instance['title'] ) ) {
  			echo $args['before_title'] . apply_filters( 'widget_title', $instance['title'] ) . $args['after_title'];
@@ -129,6 +131,8 @@ var n = d.getTimezoneOffset();
  	 * @param array $instance Previously saved values from database.
  	 */
  	public function form( $instance ) {
+    $widgetID = md5($instance['title'].rand (1 , 100));
+    $widgetID = substr($widgetID,0,4);
     $title = ! empty( $instance['title'] ) ? $instance['title'] : esc_html__( 'New title', 'text_domain' );
     $cto_toDate = (! empty( $instance['cto_toDate'] ) && isset($instance['cto_toDate'])) ? $instance['cto_toDate'] : esc_html__( '', 'text_domain' );
     $cto_toTime = (! empty( $instance['cto_toTime'] ) && isset($instance['cto_toTime'])) ? $instance['cto_toTime'] : esc_html__( '', 'text_domain' );
@@ -233,7 +237,7 @@ var n = d.getTimezoneOffset();
       }
     ?>
     <style media="screen">
-      .ctoNumbers{
+      .ctoNumbers<?php echo $widgetID;?>{
         font-size:<?php echo $cto_NumbersFontSize; ?>;
         font-weight:<?php echo $cto_boldNumbersString;?>;
         color:<?php echo $cto_colorPicker;?>;
@@ -241,20 +245,19 @@ var n = d.getTimezoneOffset();
     </style>
     <h3>Result Preview:</h3>
 <p class="preview">
-  <span class="ctoNumbers day" style="">99</span>
-  <span class="dayText">Days</span><?php echo $delimiter; ?>
-
-  <span class="ctoNumbers hour">24</span>
-  <span class="dayText">Hours</span><?php echo $delimiter; ?>
-
-  <span class="ctoNumbers minute">59</span>
-  <span class="dayText">Minutes</span><?php echo $delimiter; ?>
-
-  <span class="ctoNumbers second">59</span>
-  <span class="dayText">Seconds</span>
+  <?php $this->generatePerioud('day',99,'Days',$delimiter,$cto_textTimerLayout,$widgetID);?>
+  <?php $this->generatePerioud('hour',24,'Hours',$delimiter,$cto_textTimerLayout,$widgetID);?>
+  <?php $this->generatePerioud('minute',59,'Minutes',$delimiter,$cto_textTimerLayout,$widgetID);?>
+  <?php $this->generatePerioud('second',59,'Seconds',$delimiter,$cto_textTimerLayout,$widgetID);?>
 </p>
  		<?php
  	}
+  private function generatePerioud($type,$Number,$labelString,$delimiter,$layoutType,$widgetID){
+    ?>
+    <span class="ctoNumbers<?php echo $widgetID;?> <?php echo $type; ?>"><?php echo $Number;?></span>
+    <span class="ctoLabelText"><?php echo $labelString;?></span><?php echo $delimiter; ?>
+    <?php
+  }
 
  	/**
  	 * Sanitize widget form values as they are saved.
